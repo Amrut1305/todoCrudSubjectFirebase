@@ -1,0 +1,16 @@
+<ul class="list-group" *ngIf="tododata.length>0; else noTodo">
+    <li 
+    *ngFor="let todo of tododata"
+    class="list-group-item d-flex justify-content-between">
+        <span>{{todo.title}}</span>
+        <span>
+            <button (click)="onEdit(todo)" mat-raised-button color="primary" class="mr-2">Edit</button>
+            <button (click)="onRemove(todo)" mat-raised-button color="warn">Remove</button>
+        </span>
+    </li>
+</ul>
+<ng-template #noTodo>
+    <p class="alert alert-danger">
+        No Todo Added
+    </p>
+</ng-template>

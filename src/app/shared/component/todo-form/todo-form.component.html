@@ -1,0 +1,8 @@
+<form [formGroup]="todoForm" (ngSubmit)="onTodoSubmit()" class="mb-sm-4">
+        <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Input</mat-label>
+        <input formControlName="title" matInput>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary">{{isInEditMode? 'Update': 'Add Todo'}}</button>
+</form>

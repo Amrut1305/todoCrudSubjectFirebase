@@ -51,6 +51,7 @@ export class TodoFormComponent implements OnInit {
           .subscribe(res => {
             console.log(res);
              this._todo.addTodo$.next(newTodo)
+             this.todoForm.reset()
           })
       } else {
         let updatedTodo = {

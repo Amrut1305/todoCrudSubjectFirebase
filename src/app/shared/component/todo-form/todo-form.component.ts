@@ -34,6 +34,7 @@ export class TodoFormComponent implements OnInit {
         this.isInEditMode = false
       }
     })
+   
   }
 
   createForm() {
@@ -49,6 +50,7 @@ export class TodoFormComponent implements OnInit {
         this._todo.addTodo(newTodo)
           .subscribe(res => {
             console.log(res);
+             this._todo.addTodo$.next(newTodo)
           })
       } else {
         let updatedTodo = {
@@ -67,29 +69,4 @@ export class TodoFormComponent implements OnInit {
 
     }
   }
-
-
-
-  // onTodoSubmit() {
-  //   if (this.todoForm.valid) {
-  //     if (!this.isInEditMode) {
-  //       console.log(this.todoForm.value);
-  //       let newTodo = {
-  //         ...this.todoForm.value,
-  //         id: this._uuid.generateUuid()
-  //       }
-  //       this._todo.addTodo(newTodo)
-  //     } else {
-  //       let updatedTodo = {
-  //         ...this.todoForm.value,
-  //         id : this.editObject.id
-  //       }
-  //       this._todo.updateTodo(updatedTodo)
-  //       this.isInEditMode=false
-  //     }
-  //       this.todoForm.reset()
-
-  //   }
-  // }
-
 }

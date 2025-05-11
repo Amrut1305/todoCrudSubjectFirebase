@@ -17,11 +17,11 @@ export class TodoListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getRmoveTodos()
+    this.getRmoveAddTodos()
     this.getUpdatedTodo()
   }
 
-  getRmoveTodos(){
+  getRmoveAddTodos(){
     this._todo.fetchalltodo()
     .subscribe(res=>{
       this.tododata = res
@@ -31,6 +31,10 @@ export class TodoListComponent implements OnInit {
     this._todo.removeTodo$.subscribe(res=>{
       let index = this.tododata.findIndex(todo=>todo.id === res)
       this.tododata.splice(index,1)      
+    })
+
+    this._todo.addTodo$.subscribe(todo=>{
+        this.tododata.push(todo) 
     })
   }
 

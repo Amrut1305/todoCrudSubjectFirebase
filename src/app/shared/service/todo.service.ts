@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TodoService {
   todoData: Itodo[] = []
+  addTodo$ : Subject<Itodo> = new Subject
   editTodo$: Subject<Itodo> = new Subject()
   updatedTodo$ : Subject<Itodo> = new Subject()
   removeTodo$:Subject<string> = new Subject()
@@ -36,22 +37,20 @@ export class TodoService {
   }
 
   addTodo(todo: Itodo): Observable<any> {
+    this._matSnack.opensnackBar(`${todo.title} Added Successfully ...!!`)
     return this._httpClient.post(this.TODO_Url, todo)
     
   }
 
   removeTodo(todo: Itodo):Observable<null> {
     let REMOVE_URl = `${this.BASE_URL}/todo/${todo.id}.json`
+    this._matSnack.opensnackBar(`${todo.title} Removed Successfully ...!!`)
     return this._httpClient.delete<null>(REMOVE_URl)
-
-    // let index = this.todoData.findIndex(obj => obj.id === todo.id)
-    // this.todoData.splice(index, 1)
-    // this._matSnack.opensnackBar(`${todo.title} Removed Successfully ...!!`)
   }
 
   updateTodo(todo: Itodo):Observable<Itodo> {
     let UPDATE_URl = `${this.UPDATE_URL}/${todo.id}.json`
-
+    this._matSnack.opensnackBar(`${todo.title} Updated Successfully ...!!`)
     return this._httpClient.patch<Itodo>(UPDATE_URl, todo)
   }
 }
